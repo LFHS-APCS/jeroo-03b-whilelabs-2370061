@@ -33,8 +33,13 @@ public class Jeroo extends JerooBase {
      */
     public void clearFlowersToWater() 
     {
+        while (!isWater(AHEAD))
         // while(<test>) //Step 2: Use the opposite of Step 1's result as the <test>
         {
+          if(isFlower(HERE)){
+            pick();
+          }
+          hop();
             // Step 3:  Make progress towards the goal inside the loop
             
         }
@@ -50,7 +55,18 @@ public class Jeroo extends JerooBase {
      * 3.  Make progress towards the goal within the loop.
      */
     public void faceNorth() {
-
+      while(!isFacing(NORTH)){
+        if(isFacing(SOUTH)){
+          turn(LEFT);
+          turn(LEFT);
+        }
+        if(isFacing(EAST)){
+          turn(LEFT);
+        }
+        if(isFacing(WEST)){
+          turn(RIGHT);
+        }
+      }
     }
 
     /**
@@ -58,6 +74,38 @@ public class Jeroo extends JerooBase {
      * no matter where it is or which way it is facing.
      */
     public void goToOrigin() {
+      while(!isFacing(NORTH)){
+        if(isFacing(SOUTH)){
+          turn(LEFT);
+          turn(LEFT);
+        }
+        if(isFacing(EAST)){
+          turn(LEFT);
+        }
+        if(isFacing(WEST)){
+          turn(RIGHT);
+        }
+      }
+         while(!isWater(AHEAD)){
+           hop();
+        }
+      while(!isFacing(WEST)){
+        if(isFacing(NORTH)){
+          turn(LEFT);
+        }
+        if(isFacing(EAST)){
+          turn(LEFT);
+          turn(LEFT);
+        }
+        if(isFacing(SOUTH)){
+          turn(RIGHT);
+        }
+      }
+        while(!isWater(AHEAD)){
+            hop();
+          }
+      
+
 
     }
 
@@ -67,7 +115,19 @@ public class Jeroo extends JerooBase {
      * The Jeroo should stop as soon as there is a net in front of it.       
      */
     public void meander() {
-
+      while(!isNet(AHEAD)){
+        if(isFlower(AHEAD)){
+          hop();
+        }
+        if(isFlower(LEFT)){
+          turn(LEFT);
+          hop();
+        }
+        if(isFlower(RIGHT)){
+          turn(RIGHT);
+          hop();
+        }
+      }
     }
 
     // Do NOT touch the code below here
